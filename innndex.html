@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Sitio Azure</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-top: 20px;
+        }
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, #0078d4, #00b4ff);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .service-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            background: #f8f9fa;
+        }
+        .vm-card { border-left: 5px solid #28a745; }
+        .appservice-card { border-left: 5px solid #0078d4; }
+        .info-box {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        .badge {
+            display: inline-block;
+            padding: 5px 10px;
+            background: #0078d4;
+            color: white;
+            border-radius: 20px;
+            font-size: 12px;
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1> Mi Proyecto Azure</h1>
+        <p>Implementación de IaaS y PaaS - Servicios Cloud</p>
+        <div style="margin-top: 15px;">
+            <span class="badge">Azure VM</span>
+            <span class="badge">App Service</span>
+            <span class="badge">Azure CLI</span>
+            <span class="badge">GitHub</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>¡Bienvenido a mi sitio desplegado en Azure!</h2>
+        <p>Este proyecto demuestra la implementación de servicios cloud combinando infraestructura como servicio (IaaS) y plataforma como servicio (PaaS).</p>
+        
+        <div class="service-card vm-card">
+            <h3> Máquina Virtual (IaaS)</h3>
+            <p>Este componente está ejecutándose en una <strong>VM Linux Ubuntu</strong> con:</p>
+            <ul>
+                <li>Servidor web Nginx</li>
+                <li>Network Security Group configurado</li>
+                <li>Puertos 22 (SSH) y 80 (HTTP) abiertos</li>
+                <li>Seguridad reforzada con reglas NSG</li>
+            </ul>
+            <div class="info-box">
+                <strong>🔧 Tecnologías:</strong> Ubuntu Server, Nginx, Azure CLI, Bash
+            </div>
+        </div>
+
+        <div class="service-card appservice-card">
+            <h3> App Service (PaaS)</h3>
+            <p>Este sitio está desplegado en <strong>Azure App Service</strong> con:</p>
+            <ul>
+                <li>Despliegue continuo desde GitHub</li>
+                <li>Escalado automático configurado (1-2 instancias)</li>
+                <li>Runtime Node.js 18</li>
+                <li>Alta disponibilidad integrada</li>
+            </ul>
+            <div class="info-box">
+                <strong> Características:</strong> Auto-scaling, High Availability, CI/CD
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h4> Información del Despliegue</h4>
+            <p><strong> Fecha:</strong> <span id="fecha"></span></p>
+            <p><strong> Servicio actual:</strong> <span id="servicio">Azure App Service</span></p>
+            <p><strong> Región Azure:</strong> East US</p>
+            <p><strong> Seguridad:</strong> NSG configurado, solo puertos esenciales abiertos</p>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+            <h4> Métricas del Proyecto</h4>
+            <div style="display: flex; justify-content: space-around; margin: 20px 0;">
+                <div>
+                    <div style="font-size: 24px; font-weight: bold; color: #0078d4;">2</div>
+                    <div>Servicios Azure</div>
+                </div>
+                <div>
+                    <div style="font-size: 24px; font-weight: bold; color: #28a745;">4</div>
+                    <div>Scripts Automatización</div>
+                </div>
+                <div>
+                    <div style="font-size: 24px; font-weight: bold; color: #ff6b6b;">100%</div>
+                    <div>CLI Implementado</div>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <p>🔧 <em>Proyecto académico - Azure Services | Implementado con Azure CLI</em></p>
+        </div>
+    </div>
+
+    <script>
+        // Mostrar fecha actual
+        document.getElementById('fecha').textContent = new Date().toLocaleDateString('es-ES', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+
+        // Detectar si es VM o App Service (simulación)
+        if(window.location.hostname.includes('azurewebsites')) {
+            document.getElementById('servicio').textContent = 'Azure App Service (PaaS)';
+        } else if(window.location.hostname.includes('azure.com') || !isNaN(window.location.hostname.split('.').join(''))) {
+            document.getElementById('servicio').textContent = 'Azure Virtual Machine (IaaS)';
+        } else {
+            document.getElementById('servicio').textContent = 'Entorno Local';
+        }
+    </script>
+</body>
+</html>
